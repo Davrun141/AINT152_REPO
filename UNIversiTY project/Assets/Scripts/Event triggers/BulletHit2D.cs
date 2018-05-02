@@ -10,7 +10,13 @@ public class BulletHit2D : MonoBehaviour {
     {
         if (other.CompareTag(damageTag))
         {
-            other.SendMessage("TakeDamage", damage);
+            BulletHitData bulletHitData = new BulletHitData
+            {
+                damage = this.damage,
+                hitLocation = this.transform
+            };
+
+            other.SendMessage("TakeDamage", bulletHitData);
         }
         Destroy(gameObject);
     }
