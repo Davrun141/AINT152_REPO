@@ -19,7 +19,6 @@ public class ZombieBehaviour : MonoBehaviour {
             GetComponent<MoveTowardsObject>().target = player;
             GetComponent<SmoothLookAtTarget2D>().target = player;
         }
-        //Physics2D.IgnoreLayerCollision(8, 9);
     }
     void OnCollisionEnter2D(Collision2D other)
     {

@@ -8,19 +8,26 @@ public class PlayerBehaviour : MonoBehaviour {
     public delegate void UpdateHealth(int newHealth);
     public static event UpdateHealth OnUpdateHealth;
     public int health = 100;
+    private Light spotlight;
 
     void Start()
     {
         SendHealthData();
+        spotlight = gameObject.GetComponentInChildren<Light>(); //change to game object
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
             GetComponent<AudioSource>().PlayOneShot(shootypooty);
         }
-    }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            VariableFlashlight();
+        }
+    } 
 
     public void TakeDamage(int damage)
     {
@@ -34,7 +41,10 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void Die()
     {
+        //add something here!..
     }
+
+
 
     void SendHealthData()
     {
@@ -42,5 +52,10 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             OnUpdateHealth(health);
         }
+    }
+
+    void VariableFlashlight()
+    {
+        spotlight.enabled = !spotlight.enabled;
     }
 }
